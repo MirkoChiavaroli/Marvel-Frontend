@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Character from "../Components/Character";
 
 const Characters = () => {
   const [data, setData] = useState({});
@@ -12,8 +11,9 @@ const Characters = () => {
       try {
         const response = await axios.get(
           "https://marvel-backend-0.herokuapp.com/"
+          //   `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API}`
+          //   `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=g8KZrFEfPmqoXUft`
         );
-        // console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.log(error.message);
@@ -32,8 +32,14 @@ const Characters = () => {
       <div className="characterCard">
         {data.results.map((elem) => {
           return (
-            <div>
-              <Character elem={elem} />
+            <div className="character">
+              <h2>{elem.name}</h2>
+              <span>{elem.description}</span>
+              <img
+                className="logo"
+                src={elem.thumbnail.path}
+                alt="picsCharacters"
+              />
             </div>
           );
         })}
