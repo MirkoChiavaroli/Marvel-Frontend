@@ -1,1 +1,14 @@
 /* Other rules */
+header {
+  background-color: #eb281f;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  height: 50px;
+}
+.linkHeader {
+  color: white;
+  font-size: 30px;
+  text-decoration: none;
+}
