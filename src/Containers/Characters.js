@@ -28,7 +28,7 @@ const Characters = () => {
     <p>Character is loading ...</p>
   ) : (
     <div className="character">
-      <h2>Personagges</h2>
+      <h2>Personnages</h2>
       <div className="characterCard">
         {data.results.map((elem) => {
           return (
