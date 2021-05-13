@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useHistory } from "react";
 import { Link } from "react-router-dom";
 
 const Characters = () => {
@@ -10,9 +10,9 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://marvel-backend-0.herokuapp.com/"
+          //   `https://marvel-backend-0.herokuapp.com/characters?apiKey=g8KZrFEfPmqoXUft`
           //   `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API}`
-          //   `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=g8KZrFEfPmqoXUft`
+          "https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=g8KZrFEfPmqoXUft"
         );
         setData(response.data);
       } catch (error) {
@@ -25,26 +25,33 @@ const Characters = () => {
   }, []);
 
   return isLoading ? (
-    <p>Character is loading ...</p>
+    <p>Chargement des Personnages ...</p>
   ) : (
-    <div className="character">
+    <div className="containers">
       <h2>Personnages</h2>
-      <div className="characterCard">
-        {data.results.map((elem) => {
+      <div className="character">
+        {data.results.map((character) => {
           return (
-            <div className="character">
-              <h2>{elem.name}</h2>
-              <span>{elem.description}</span>
-              <img
-                className="logo"
-                src={elem.thumbnail.path}
-                alt="picsCharacters"
-              />
+            <div>
+              <div className="characterText">
+                {character.comics.map((comicsId) => {
+                  return (
+                    <Link to={`/favorites/${comicsId}`}>
+                      <img
+                        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                        alt="picsCharacters"
+                      />
+                      <h3>{character.name}</h3>
+                      <span>{character.description}</span>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
       </div>
-      <Link to="/"> CLICCA QUI PER LA HOME </Link>
+      {/* <Link to="/"> CLICCA QUI PER LA HOME </Link> */}
     </div>
   );
 };
