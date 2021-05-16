@@ -5,9 +5,10 @@ import Home from "./Containers/Home";
 import Characters from "./Containers/Characters";
 import Comics from "./Containers/Comics";
 import Favorites from "./Containers/Favorites";
+import Comic from "./Containers/Comic";
 
 import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -23,11 +24,14 @@ function App() {
         <Route path="/favorites">
           <Favorites />
         </Route>
+        <Route path="/comic">
+          <Comic />
+        </Route>
         <Route path="/">
           <Home />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }

@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import Hero from "../Components/Hero";
 
 const Home = () => {
   return (
     <dev>
-      <dev>THIS IS HOME</dev>
-      <Link to="/characters"> CLICCA QUI </Link>
+      <Hero />
     </dev>
   );
 };

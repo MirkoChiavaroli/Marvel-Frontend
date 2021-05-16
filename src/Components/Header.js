@@ -8,9 +8,18 @@ const Header = () => {
         <img className="logo" src={logo} alt="" />
       </Link>
       <div className="linkHeader">
-        <Link to="/characters"> Personnages </Link>
-        <Link to="/comics"> Comics </Link>
-        <Link to="/favorites"> Favoris </Link>
+        <Link to="/characters" className="text-link">
+          {" "}
+          CHARACTERS{" "}
+        </Link>
+        <Link to="/comics" className="text-link">
+          {" "}
+          COMICS{" "}
+        </Link>
+        <Link to="/favorites" className="text-link">
+          {" "}
+          FAVORITES{" "}
+        </Link>
       </div>
     </header>
   );

@@ -1,20 +1,136 @@
 /* Other rules */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,300;1,600&display=swap");
 
+body {
+  font-family: "Barlow", sans-serif;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: black;
+}
+h2 {
+  font-size: 35px;
+  font-weight: 600;
+  padding: 10px;
+  /* text-align: center; */
+  /* background-color: #c43029; */
+  color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+input {
+  font-size: 18px;
+  margin-left: 10px;
+  font-family: "Barlow", sans-serif;
+}
+button {
+  color: inherit;
+  text-decoration: inherit;
+  border: none;
+}
+
+/* HEADER */
 header {
-  background-color: #eb281f;
+  background-color: #c43029;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .logo {
   height: 50px;
+  padding: 10px;
 }
-.linkHeader {
+.text-link {
+  color: inherit;
+  text-decoration: inherit;
+  font-weight: 600;
   color: white;
-  font-size: 30px;
-  text-decoration: none;
+  font-size: 25px;
+  margin-right: 20px;
 }
 
-/* CHARACTER */
+/* HERO */
+.hero {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* CHARACTER, COMICS */
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charactersCard,
+.comics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+  flex: 1;
+  margin-top: 15px;
+}
+.charactersLink,
+.comicsCard {
+  justify-content: space-between;
+
+  margin: 10px;
+  flex-wrap: wrap;
+  float: left;
+}
+
 img {
   height: 180px;
+  width: 180px;
+  object-fit: cover;
+  object-position: center;
+}
+.comicsImg {
+  height: 300px;
+  width: 180px;
+  object-fit: cover;
+}
+
+.charactersName,
+.comicsName {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 8px;
+  width: 180px;
+  display: inline-block;
+  color: white;
+}
+.charactersText,
+.comicsText {
+  font-size: 18px;
+  margin-top: 8px;
+  text-align: left;
+  width: 180px;
+  color: white;
+}
+button {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+/* FAVORITES */
+.favorites {
+  padding: 20px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #eb281f;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.footerP {
+  color: white;
+  padding: 10px;
+  align-items: center;
 }

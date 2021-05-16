@@ -1,18 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import Search from "../Components/Search";
+import LineComics from "../Components/LineComics";
 
 const Comics = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(100);
+  const [result, setResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          //   `https://marvel-backend-0.herokuapp.com/characters?apiKey=g8KZrFEfPmqoXUft`
-          //   `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API}`
-          `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=g8KZrFEfPmqoXUft`
+          `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=g8KZrFEfPmqoXUft&limit=${limit}&skip=${skip}`
         );
         setData(response.data);
       } catch (error) {
@@ -22,25 +26,65 @@ const Comics = () => {
     };
 
     fetchData();
-  }, []);
+  }, [limit, skip]);
+
+  const handleSearch = (event) => {
+    const newResults = [];
+    for (let i = 0; i < data.results.length; i++) {
+      if (
+        data.results[i].name.indexOf(event.target.value.toLowerCase()) !== -1
+      ) {
+        if (newResults.length <= 100) {
+          newResults.push(data.results[i]);
+        } else {
+          break;
+        }
+      }
+    }
+    setResults(newResults);
+  };
 
   return isLoading ? (
-    <p>Chargement des Comics ...</p>
+    <p>Comics are loading ...</p>
   ) : (
     <div className="containers">
-      <h2>Comics</h2>
+      <div className="search">
+        <Search handleSearch={handleSearch} />
+        {result.map((comics, index) => {
+          return <LineComics key={index} comics={comics} />;
+        })}
+        <h2> COMICS </h2>
+        <div className="buttonSkip">
+          <button
+            onClick={() => {
+              skip > 0 && setSkip(skip - limit);
+            }}
+          >
+            ◀️ PAG
+          </button>
+          <button
+            onClick={() => {
+              setSkip(skip + limit);
+            }}
+          >
+            PAG ▶️
+          </button>
+        </div>
+      </div>
+
       <div className="comics">
         {data.results.map((comic) => {
           return (
             <div className="comicsCard">
-              <div className="comicsText">
-                <h4>{comic.name}</h4>
-                <span>{comic.description}</span>
-              </div>
               <img
+                className="comicsImg"
                 src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                 alt={comic.name}
               />
+              <div>
+                <p className="comicsName">{comic.name}</p>
+                <p className="comicsText">{comic.description}</p>
+              </div>
             </div>
           );
         })}

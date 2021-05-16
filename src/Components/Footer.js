@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer>
-      <p>
+      <p className="footerP">
         Create by Miruko at{" "}
         <a _blank href="https://www.lereacteur.io/">
           Le Reacteur
